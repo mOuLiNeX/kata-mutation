@@ -1,0 +1,29 @@
+@startuml
+
+class Company {
+- String name
+public Company(String newName)
+String getName()
+void setName(String newName)
+void addEmployee(Employee newEmployee)
+void everybodyGetsRaiseBy(double incrementAsFraction)
+Employee findEmployeeById(String id)
+int numberOfEmployees()
+}
+
+class Employee {
+String id
+String name
+double salary
+Employee(String newId, String newName, double newSalary)
+String getId()
+String getName()
+void setName(String newName)
+double getSalary()
+void setSalary(double newSalary)
+}
+
+Company o-> Employee : employees
+
+
+@enduml
