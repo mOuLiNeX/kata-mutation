@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Company {
-    private String name = "No name";
+    private String name;
 
     private List<Employee> employees = new ArrayList<>();
 
@@ -17,6 +17,7 @@ public class Company {
     }
 
     public void setName(String newName) {
+        this.name = newName;
     }
 
     public void addEmployee(Employee newEmployee) {
@@ -30,7 +31,7 @@ public class Company {
      *                            parameter is 0.1, everyone at the company gets a 10% raise
      */
     public void everybodyGetsRaiseBy(double incrementAsFraction) {
-        this.employees.forEach(e -> e.setSalary(e.getSalary() * (incrementAsFraction)));
+        this.employees.forEach(e -> e.setSalary(e.getSalary() * (1 + incrementAsFraction)));
     }
 
     /**
@@ -40,17 +41,13 @@ public class Company {
      * @return the employee with the id passed as the parameter or null if no such employee exists
      */
     public Employee findEmployeeById(String id) {
-        int foundIndex = 0;
-        for (int i = 0; i < this.employees.size(); i++) {
-            if (this.employees.get(i).getId().equals(id)) {
-                foundIndex = i;
-                break;
-            }
-        }
-        return this.employees.get(foundIndex);
+        return this.employees.stream()
+                .filter(e -> e.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public int numberOfEmployees() {
-        return 7;
+        return this.employees.size();
     }
 }

@@ -25,7 +25,7 @@ public class Employee {
      * @param newName the new name for the employee, possibly with leading and trailing white space to be removed
      */
     public void setName(String newName) {
-        this.name = newName.replaceAll(" ", "");
+        this.name = newName.trim();
     }
 
     public double getSalary() {
